@@ -101,6 +101,7 @@ def send_message(title, content):
         'text': f'【{title}】\n{content}',
     }
     response = requests.post(url=url, json=data)
+    print(response.content)
 
 
 def main():
