@@ -23,6 +23,8 @@ import time
 if 'meituanCookie' in os.environ:
     meituanCookie = re.split("@|&",os.environ.get("meituanCookie"))
     print(f'查找到{len(meituanCookie)}个账号')
+    telegram_token = re.split("@|&",os.environ.get("telegramToken"))
+    telegram_user_id = re.split("@|&", os.environ.get("telegramUserId"))
 else:
     meituanCookie = ['']
     print('无meituanCookie变量')
@@ -48,6 +50,7 @@ def waim(ck):
             retry_count = retry_count + 1
             print(f"已重试{retry_count}次")
             if retry_count == 10:
+                send_message("获取优惠券失败", response.content)
                 break
             continue
 
@@ -55,6 +58,7 @@ def waim(ck):
         print(f"获得{len(b['data']['allCoupons'])}张优惠券")
         for sj in b['data']['allCoupons']:
             print(f"{sj['couponName']}-{sj['amountLimit']}-{sj['couponAmount']}元-{sj['amountLimit']}-{sj['etime']}")
+        send_message("获取优惠券成功", f"获得{len(b['data']['allCoupons'])}张优惠券")
         break
     
 
@@ -78,6 +82,7 @@ def tuangou(ck):
             retry_count = retry_count + 1
             print(f"已重试{retry_count}次")
             if retry_count == 10:
+                send_message("获取优惠券失败", response.content)
                 break
             continue
 
@@ -85,7 +90,17 @@ def tuangou(ck):
         print(f"获得{len(b['data']['allCoupons'])}张优惠券")
         for sj in b['data']['allCoupons']:
             print(f"{sj['couponName']}-{sj['amountLimit']}-{sj['couponAmount']}元-{sj['amountLimit']}-{sj['etime']}")
+        send_message("获取优惠券成功", f"获得{len(b['data']['allCoupons'])}张优惠券")
         break
+
+
+def send_message(title, content):
+    url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
+    data = {
+        'chat_id': telegram_user_id,
+        'text': f'【{title}】\n{content}',
+    }
+    response = requests.post(url=url, json=data)
 
 
 def main():
