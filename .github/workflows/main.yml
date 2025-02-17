@@ -29,4 +29,5 @@ jobs:
         run: python mtV4.py
         env:
           meituanCookie: ${{ secrets.TOKEN }}
-          
+          telegramToken: ${{ secrets.TELEGRAMTOKEN }}
+          telegramUserId: ${{ secrets.TELEGRAMUSERID }}
