@@ -23,8 +23,8 @@ import time
 if 'meituanCookie' in os.environ:
     meituanCookie = re.split("@|&",os.environ.get("meituanCookie"))
     print(f'查找到{len(meituanCookie)}个账号')
-    telegram_token = re.split("@|&",os.environ.get("telegramToken"))
-    telegram_user_id = re.split("@|&", os.environ.get("telegramUserId"))
+    telegram_token = re.split("@|&",os.environ.get("telegramToken"))[0]
+    telegram_user_id = re.split("@|&", os.environ.get("telegramUserId"))[0]
 else:
     meituanCookie = ['']
     print('无meituanCookie变量')
