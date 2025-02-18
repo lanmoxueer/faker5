@@ -95,13 +95,18 @@ def tuangou(ck):
 
 
 def send_message(title, content):
-    url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
+    url = f'https://api.telegram.org/bot{telegram_token}/sendMessage'
     data = {
         'chat_id': telegram_user_id,
         'text': f'【{title}】\n{content}',
     }
-    response = requests.post(url=url, json=data)
-    print(response.content)
+    response = requests.post(url=url, data=data)
+    # 检查请求是否成功
+    if response.status_code == 200:
+        print('Message sent successfully!')
+    else:
+        print(f'Failed to send message. Status code: {response.status_code}')
+        print(f'Response: {response.text}')
 
 
 def main():
