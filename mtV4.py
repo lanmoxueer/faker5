@@ -95,7 +95,7 @@ def tuangou(ck):
 
 
 def send_message(title, content):
-    url = f'https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={telegram_user_id}&text={title}\n{content}
+    url = f'https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={telegram_user_id}&text={title}\n{content}'
     response = requests.post(url=url)
     # 检查请求是否成功
     if response.status_code == 200:
