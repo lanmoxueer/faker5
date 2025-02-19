@@ -17,6 +17,7 @@ import requests
 import re
 import os
 import time
+import traceback
 
 
 #分割变量
@@ -116,6 +117,7 @@ def main():
                 waim(ck)
                 print('-------------')
             except Exception as e:
+                traceback.print_stack()
                 print('错误')
                 print(e)
 
@@ -124,6 +126,7 @@ def main():
                 tuangou(ck)
                 print('-------------')
             except Exception as e:
+                traceback.print_stack()
                 print('错误')
                 print(e)
             
