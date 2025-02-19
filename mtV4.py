@@ -56,6 +56,7 @@ def waim(ck):
             continue
 
         b = response.json()
+        print(b)
         print(f"获得{len(b['data']['allCoupons'])}张优惠券")
         for sj in b['data']['allCoupons']:
             print(f"{sj['couponName']}-{sj['amountLimit']}-{sj['couponAmount']}元-{sj['amountLimit']}-{sj['etime']}")
@@ -88,6 +89,7 @@ def tuangou(ck):
             continue
 
         b = response.json()
+        print(b)
         print(f"获得{len(b['data']['allCoupons'])}张优惠券")
         for sj in b['data']['allCoupons']:
             print(f"{sj['couponName']}-{sj['amountLimit']}-{sj['couponAmount']}元-{sj['amountLimit']}-{sj['etime']}")
